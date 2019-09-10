@@ -3,6 +3,7 @@ package br.com.caelum.twittelum
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_lista.*
 
 class ListaTweetsActivity : AppCompatActivity() {
@@ -11,9 +12,51 @@ class ListaTweetsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista)
 
-        val tweets = arrayListOf("tweet 1 ", "tweet 2 ", "tweet 3", "tweet 4", "tweet 1 ", "tweet 2 ", "tweet 3", "tweet 4", "tweet 1 ", "tweet 2 ", "tweet 3", "tweet 4", "tweet 1 ", "tweet 2 ", "tweet 3", "tweet 4", "tweet 1 ", "tweet 2 ", "tweet 3", "tweet 4")
+        val tweets = arrayListOf(
+            "tweet 1 ",
+            "tweet 2 ",
+            "tweet 3",
+            "tweet 4",
+            "tweet 1 ",
+            "tweet 2 ",
+            "tweet 3",
+            "tweet 4",
+            "tweet 1 ",
+            "tweet 2 ",
+            "tweet 3",
+            "tweet 4",
+            "tweet 1 ",
+            "tweet 2 ",
+            "tweet 3",
+            "tweet 4",
+            "tweet 1 ",
+            "tweet 2 ",
+            "tweet 3",
+            "tweet 4"
+        )
 
 
-        lista.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , tweets)
+        lista.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tweets)
+
+
+        fab.setOnClickListener {
+
+            Snackbar.make(fab, "Voce clicou no btn", Snackbar.LENGTH_LONG).show()
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
