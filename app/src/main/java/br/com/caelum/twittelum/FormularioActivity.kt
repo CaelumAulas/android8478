@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.caelum.twittelum.modelo.Tweet
 import kotlinx.android.synthetic.main.activity_main.*
 
 class FormularioActivity : AppCompatActivity() {
@@ -44,6 +45,8 @@ class FormularioActivity : AppCompatActivity() {
     private fun publicaTweet() {
         val texto = campoDeMensagem.text.toString()
 
-        Toast.makeText(this, texto, Toast.LENGTH_LONG).show()
+        val tweet = Tweet(texto)
+
+        Toast.makeText(this, "$tweet", Toast.LENGTH_LONG).show()
     }
 }
