@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class FormularioActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         salvar.setOnClickListener {
 
             publicaTweet()
+
+            finish()
 
         }
     }

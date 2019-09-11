@@ -1,9 +1,9 @@
 package br.com.caelum.twittelum
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_lista.*
 
 class ListaTweetsActivity : AppCompatActivity() {
@@ -41,7 +41,10 @@ class ListaTweetsActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
 
-            Snackbar.make(fab, "Voce clicou no btn", Snackbar.LENGTH_LONG).show()
+
+            val intencao = Intent(this, FormularioActivity::class.java)
+
+            startActivity(intencao)
 
         }
 
