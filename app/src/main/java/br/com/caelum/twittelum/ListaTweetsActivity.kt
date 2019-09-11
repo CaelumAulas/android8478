@@ -41,25 +41,11 @@ class ListaTweetsActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
 
-
             val intencao = Intent(this, FormularioActivity::class.java)
 
             startActivity(intencao)
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

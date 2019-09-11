@@ -1,6 +1,8 @@
 package br.com.caelum.twittelum
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,13 +14,31 @@ class FormularioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        salvar.setOnClickListener {
+       supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-            publicaTweet()
+    }
 
-            finish()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
+        menuInflater.inflate(R.menu.formulario_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId) {
+
+            R.id.menuSalvar -> {
+                publicaTweet()
+                finish()
+            }
+
+            android.R.id.home -> finish()
         }
+
+        return true
+
     }
 
     private fun publicaTweet() {
