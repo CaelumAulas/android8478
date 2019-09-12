@@ -4,12 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import br.com.caelum.twittelum.bancoDeDados.TweetDao
 import br.com.caelum.twittelum.bancoDeDados.TwittelumDatabase
 import br.com.caelum.twittelum.modelo.Tweet
+import br.com.caelum.twittelum.viewmodel.TweetViewModel
+import br.com.caelum.twittelum.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_lista.*
 
 class ListaTweetsActivity : AppCompatActivity() {
+
+    private val viewModel: TweetViewModel by lazy {
+        ViewModelProviders.of(this, ViewModelFactory).get(TweetViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +36,7 @@ class ListaTweetsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val database = TwittelumDatabase.create(this)
-        val dao = database.getTweetDao()
-        val tweets = dao.lista()
-
+        val tweets = viewModel.getLista()
 
         lista.adapter = ArrayAdapter<Tweet>(this, android.R.layout.simple_list_item_1, tweets)
 

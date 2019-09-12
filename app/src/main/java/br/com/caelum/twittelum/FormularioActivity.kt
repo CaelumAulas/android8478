@@ -5,11 +5,18 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import br.com.caelum.twittelum.bancoDeDados.TwittelumDatabase
 import br.com.caelum.twittelum.modelo.Tweet
+import br.com.caelum.twittelum.viewmodel.TweetViewModel
+import br.com.caelum.twittelum.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class FormularioActivity : AppCompatActivity() {
+
+    private val viewModel: TweetViewModel by lazy {
+        ViewModelProviders.of(this, ViewModelFactory).get(TweetViewModel::class.java)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +55,7 @@ class FormularioActivity : AppCompatActivity() {
 
         val tweet = Tweet(texto)
 
-        val database = TwittelumDatabase.create(this)
-        val tweetDao = database.getTweetDao()
-        tweetDao.salva(tweet)
+        viewModel.publicaTweet(tweet)
 
         Toast.makeText(this, "$tweet", Toast.LENGTH_LONG).show()
     }
