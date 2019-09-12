@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import br.com.caelum.twittelum.bancoDeDados.TweetDao
+import br.com.caelum.twittelum.bancoDeDados.TwittelumDatabase
+import br.com.caelum.twittelum.modelo.Tweet
 import kotlinx.android.synthetic.main.activity_lista.*
 
 class ListaTweetsActivity : AppCompatActivity() {
@@ -12,31 +15,12 @@ class ListaTweetsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista)
 
-        val tweets = arrayListOf(
-            "tweet 1 ",
-            "tweet 2 ",
-            "tweet 3",
-            "tweet 4",
-            "tweet 1 ",
-            "tweet 2 ",
-            "tweet 3",
-            "tweet 4",
-            "tweet 1 ",
-            "tweet 2 ",
-            "tweet 3",
-            "tweet 4",
-            "tweet 1 ",
-            "tweet 2 ",
-            "tweet 3",
-            "tweet 4",
-            "tweet 1 ",
-            "tweet 2 ",
-            "tweet 3",
-            "tweet 4"
-        )
+        val database = TwittelumDatabase.create(this)
+        val dao = database.getTweetDao()
+        val tweets = dao.lista()
 
 
-        lista.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tweets)
+        lista.adapter = ArrayAdapter<Tweet>(this, android.R.layout.simple_list_item_1, tweets)
 
 
         fab.setOnClickListener {
