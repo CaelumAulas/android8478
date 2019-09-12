@@ -9,4 +9,6 @@ class TweetViewModel(private val repository: TweetRepository) : ViewModel() {
     fun publicaTweet(tweet: Tweet) = repository.salva(tweet)
 
     fun getLista() = repository.listaTweets()
+
+    fun deleta(tweet: Tweet) = repository.deleta(tweet)
 }

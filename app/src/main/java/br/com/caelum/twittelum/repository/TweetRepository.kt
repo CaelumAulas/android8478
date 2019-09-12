@@ -8,4 +8,6 @@ class TweetRepository(private val fonteDeDados: TweetDao) {
     fun listaTweets() = fonteDeDados.lista()
 
     fun salva(tweet: Tweet) = fonteDeDados.salva(tweet)
+
+    fun deleta(tweet: Tweet) = fonteDeDados.deleta(tweet)
 }

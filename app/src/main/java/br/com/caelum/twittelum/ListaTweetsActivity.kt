@@ -3,11 +3,10 @@ package br.com.caelum.twittelum
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import br.com.caelum.twittelum.bancoDeDados.TweetDao
-import br.com.caelum.twittelum.bancoDeDados.TwittelumDatabase
 import br.com.caelum.twittelum.modelo.Tweet
 import br.com.caelum.twittelum.viewmodel.TweetViewModel
 import br.com.caelum.twittelum.viewmodel.ViewModelFactory
@@ -32,6 +31,12 @@ ListaTweetsActivity : AppCompatActivity() {
         })
 
 
+        lista.setOnItemClickListener { _, _, posicao, _ ->
+            val tweet = lista.getItemAtPosition(posicao) as Tweet
+
+            perguntaSePrecisaDeletar(tweet)
+        }
+
         fab.setOnClickListener {
 
             val intencao = Intent(this, FormularioActivity::class.java)
@@ -40,6 +45,19 @@ ListaTweetsActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun perguntaSePrecisaDeletar(tweet: Tweet) {
+        AlertDialog.Builder(this)
+            .setIcon(R.drawable.ic_warning)
+            .setTitle("Atenção")
+            .setMessage("Você quer mesmo apagar esse tweet?")
+            .setPositiveButton("Sim") { _, _ ->
+                viewModel.deleta(tweet)
+            }
+            .setNegativeButton("Não", null)
+            .setNeutralButton("Vish", null)
+            .show()
     }
 
 }
