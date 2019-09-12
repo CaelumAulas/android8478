@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import br.com.caelum.twittelum.modelo.Tweet
 
-@Database(entities = [Tweet::class], version = 1)
+@Database(entities = [Tweet::class], version = 1, exportSchema = false)
 abstract class TwittelumDatabase : RoomDatabase() {
 
     abstract fun getTweetDao(): TweetDao
