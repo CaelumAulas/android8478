@@ -1,5 +1,6 @@
 package br.com.caelum.twittelum
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -38,12 +39,15 @@ class FormularioActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        caminho?.let {
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 123 && resultCode == Activity.RESULT_OK) {
             exibeFoto()
         }
     }
+
 
     private fun exibeFoto() {
 
@@ -92,7 +96,7 @@ class FormularioActivity : AppCompatActivity() {
 
         vaiParaCamera.putExtra(MediaStore.EXTRA_OUTPUT, caminhoFoto())
 
-        startActivity(vaiParaCamera)
+        startActivityForResult(vaiParaCamera, 123)
     }
 
     private fun caminhoFoto(): Uri {
