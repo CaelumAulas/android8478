@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Binder
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
@@ -15,8 +14,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProviders
-import br.com.caelum.twittelum.bancoDeDados.TwittelumDatabase
 import br.com.caelum.twittelum.modelo.Tweet
+import br.com.caelum.twittelum.util.toBase64
 import br.com.caelum.twittelum.viewmodel.TweetViewModel
 import br.com.caelum.twittelum.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
@@ -54,12 +53,17 @@ class FormularioActivity : AppCompatActivity() {
 
         val bitmap = BitmapFactory.decodeFile(caminho)
 
-        val createScaledBitmap =
+        val scaledBitmap =
             Bitmap.createScaledBitmap(bitmap, 300, 300, true)
 
 
         foto.scaleType = ImageView.ScaleType.FIT_XY
-        foto.setImageBitmap(createScaledBitmap)
+        foto.setImageBitmap(scaledBitmap)
+
+        val base64 = scaledBitmap.toBase64()
+
+        foto.tag = base64
+
 
     }
 
@@ -112,7 +116,9 @@ class FormularioActivity : AppCompatActivity() {
     private fun publicaTweet() {
         val texto = campoDeMensagem.text.toString()
 
-        val tweet = Tweet(texto)
+        val base64 = foto.tag as String?
+
+        val tweet = Tweet(texto, base64)
 
         viewModel.publicaTweet(tweet)
 
