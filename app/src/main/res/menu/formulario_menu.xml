@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menuFoto"
+        android:icon="@drawable/ic_camera"
+        android:title="Tirar foto"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/menuSalvar"
         android:icon="@drawable/ic_save"
         android:title="Salvar"
